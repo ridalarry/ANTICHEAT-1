@@ -1,0 +1,10 @@
+/PacketBlockPlacementEvent.class
+/PacketEntityActionEvent$PlayerAction.class
+/PacketEntityActionEvent.class
+/PacketHeldItemChangeEvent.class
+/PacketKeepAliveEvent.class
+/PacketKillauraEvent.class
+/PacketPlayerEvent.class
+/PacketPlayerType.class
+/PacketSwingArmEvent.class
+/PacketUseEntityEvent.class

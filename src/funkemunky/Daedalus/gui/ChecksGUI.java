@@ -147,7 +147,7 @@ public class ChecksGUI implements Listener {
 		list.add(ChatColor.translateAlternateColorCodes('&',
 				"&7Current Version: &fb" + Daedalus.getDescription().getVersion()));
 		if (Daedalus.hasNewVersion()) {
-			list.add(C.Gold + C.Italics + "New Update: " + C.White + "b" + Daedalus.getPasteVersion());
+			list.add(C.Gold + C.Italics + "New Update: " + C.White + "b" + Daedalus.getVersion());
 		}
 
 		return list;
