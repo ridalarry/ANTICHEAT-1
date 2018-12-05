@@ -98,7 +98,7 @@ public class UtilPlayer {
 		if (player.getLocation().clone().add(0.0D, 1.0D, 0.0D).getBlock().getRelative(BlockFace.DOWN).getType()
 				.isSolid()
 				|| player.getLocation().clone().add(0.0D, 1.0D, 0.0D).getBlock().getRelative(BlockFace.UP).getType()
-						.isSolid()) {
+				.isSolid()) {
 			return true;
 		}
 		if (block.getType().isSolid()) {
@@ -115,13 +115,67 @@ public class UtilPlayer {
 		}
 		if (block1.getRelative(BlockFace.DOWN).getType().isSolid()
 				|| block1.getLocation().getBlock().getRelative(BlockFace.UP).getType().isSolid()
-						&& block2.getRelative(BlockFace.DOWN).getType().isSolid()
+				&& block2.getRelative(BlockFace.DOWN).getType().isSolid()
 				|| block2.getLocation().getBlock().getRelative(BlockFace.UP).getType().isSolid()) {
 			return true;
 		}
 		return false;
 	}
 
+	public static boolean isNearBar(Player p) {
+		boolean out = false;
+		for (Block b : UtilBlock.getNearbyBlocks(p.getLocation(), 1)) {
+			if (UtilBlock.isBar(b)) {
+				out = true;
+			}
+		}
+		return out;
+	}
+	public static boolean isNearChest(Player p) {
+		boolean out = false;
+		for (Block b : UtilBlock.getNearbyBlocks(p.getLocation(), 1)) {
+			if (UtilBlock.isChest(b)) {
+				out = true;
+			}
+		}
+		return out;
+	}
+	public static boolean isNearPressure(Player p) {
+		boolean out = false;
+		for (Block b : UtilBlock.getNearbyBlocks(p.getLocation(), 1)) {
+			if (UtilBlock.isPressure(b)) {
+				out = true;
+			}
+		}
+		return out;
+	}
+	public static boolean isNearSlime(Location loc) {
+		boolean out = false;
+		for (Block b : UtilBlock.getNearbyBlocks(loc, 3)) {
+			if (UtilBlock.isSlime(b)) {
+				out = true;
+			}
+		}
+		return out;
+	}
+	public static boolean isNearSlime(Player p) {
+		boolean out = false;
+		for (Block b : UtilBlock.getNearbyBlocks(p.getLocation(), 1)) {
+			if (UtilBlock.isSlime(b)) {
+				out = true;
+			}
+		}
+		return out;
+	}
+	public static boolean isNearFence(Player p) {
+		boolean out = false;
+		for (Block b : UtilBlock.getNearbyBlocks(p.getLocation(), 1)) {
+			if (UtilBlock.isFence(b)) {
+				out = true;
+			}
+		}
+		return out;
+	}
 	public static boolean isOnGround(Player player) {
 		if (player.getLocation().getBlock().getRelative(BlockFace.DOWN).getType() != Material.AIR) {
 			return true;
@@ -146,7 +200,7 @@ public class UtilPlayer {
 				continue;
 			}
 			Bukkit.getServer()
-					.broadcastMessage(new StringBuilder(String.valueOf(entity.getLocation().distance(loc))).toString());
+			.broadcastMessage(new StringBuilder(String.valueOf(entity.getLocation().distance(loc))).toString());
 			if (entity.getLocation().distance(loc) > distance) {
 				continue;
 			}

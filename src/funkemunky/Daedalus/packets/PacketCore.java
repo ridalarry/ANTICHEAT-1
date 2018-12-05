@@ -119,7 +119,7 @@ public class PacketCore {
 			}
 
 			private void processDataWatcher(WrappedDataWatcher watcher) {
-				if (watcher != null && watcher.getObject(6) != null && watcher.getFloat(6) != 0.0F) {
+				if (watcher != null && watcher.getObject(6) != null && watcher.getByte(6) != 0.0F) {
 					watcher.setObject(6, 1.0f);
 				}
 			}

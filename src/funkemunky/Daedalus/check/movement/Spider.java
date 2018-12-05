@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
@@ -36,6 +37,7 @@ public class Spider extends Check {
 
 	private Map<UUID, Map.Entry<Long, Double>> AscensionTicks = new HashMap<UUID, Map.Entry<Long, Double>>();
 
+	@SuppressWarnings("deprecation")
 	@EventHandler(ignoreCancelled = true)
 	public void CheckSpider(PlayerMoveEvent event) {
 		Player player = event.getPlayer();
@@ -45,7 +47,24 @@ public class Spider extends Check {
 				|| player.getAllowFlight()
 				|| player.getVehicle() != null
 				|| !UtilBlock.isInAir(player)
-				|| getDaedalus().LastVelocity.containsKey(player.getUniqueId())) {
+				|| getDaedalus().LastVelocity.containsKey(player.getUniqueId())
+				|| player.getGameMode().equals(GameMode.CREATIVE)
+				|| event.getTo().getY() < event.getFrom().getY()
+				|| player.getVehicle() != null
+				|| player.getLocation().getBlock().getRelative(BlockFace.DOWN).getType() == Material.SPONGE
+				|| player.getLocation().getBlock().getRelative(BlockFace.DOWN).getTypeId() == 165
+				|| UtilPlayer.isOnClimbable(player, 0)
+				|| UtilPlayer.isOnClimbable(player, 1)
+				|| player.hasPotionEffect(PotionEffectType.JUMP)
+				|| getDaedalus().getLag().getTPS() < getDaedalus().getTPSCancel()
+				|| getDaedalus().getLag().getPing(player) > getDaedalus().getPingCancel()
+				|| UtilPlayer.isNearPressure(player)
+				|| UtilPlayer.isNearChest(player)
+				|| UtilPlayer.isNearBar(player)
+				|| UtilPlayer.isNearSlime(player)
+				|| UtilPlayer.isNearSlime(event.getFrom())
+				|| UtilPlayer.isNearSlime(event.getTo())
+				|| UtilPlayer.isNearFence(player)) {
 			return;
 		}
 

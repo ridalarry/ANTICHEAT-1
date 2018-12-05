@@ -3,6 +3,7 @@ package funkemunky.Daedalus.utils;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -30,6 +31,55 @@ public class UtilBlock {
 			}
 		}
 		return Block;
+	}
+	@SuppressWarnings("deprecation")
+	public static boolean isPressure(Block block) {
+		return block.getTypeId() == 70
+				|| block.getTypeId() == 72
+				|| block.getTypeId() == 147
+				|| block.getTypeId() == 148;
+	}
+	@SuppressWarnings("deprecation")
+	public static boolean isFence(Block block) {
+		return block.getType().equals(Material.FENCE)
+				|| block.getType().getId() == 85
+				|| block.getType().getId() == 139
+				|| block.getType().getId() == 113
+				|| block.getTypeId() == 188
+				|| block.getTypeId() == 189
+				|| block.getTypeId() == 190
+				|| block.getTypeId() == 191
+				|| block.getTypeId() == 192
+				|| block.getType().equals(Material.NETHER_FENCE);
+
+	}
+	public static List<Block> getNearbyBlocks(Location location, int radius) {
+		List<Block> blocks = new ArrayList<>();
+		for(int x = location.getBlockX() - radius; x <= location.getBlockX() + radius; x++) {
+			for(int y = location.getBlockY() - radius; y <= location.getBlockY() + radius; y++) {
+				for(int z = location.getBlockZ() - radius; z <= location.getBlockZ() + radius; z++) {
+					blocks.add(location.getWorld().getBlockAt(x, y, z));
+				}
+			}
+		}
+		return blocks;
+	}
+	@SuppressWarnings("deprecation")
+	public static boolean isFenceGate(Block block) {
+		return block.getType().equals(Material.FENCE_GATE) || block.getTypeId() == 183 || block.getTypeId() == 184 || block.getTypeId() == 185 || block.getTypeId() == 186 || block.getTypeId() == 187;
+	}
+	public static boolean isChest(Block block) {
+		return block.getType().equals(Material.CHEST)|| block.getType().equals(Material.ENDER_CHEST)|| block.getType().equals(Material.TRAPPED_CHEST);
+
+	}
+
+	@SuppressWarnings("deprecation")
+	public static boolean isSlime(Block block) {
+		return block.getTypeId() == 165;
+	}
+	public static boolean isBar(Block block) {
+		return block.getType().equals(Material.IRON_FENCE);
+
 	}
 
 	public static boolean isLiquid(Block block) {
@@ -154,7 +204,7 @@ public class UtilBlock {
 
 	public static String LocationToString(Location Location) {
 		return Location.getWorld().getName() + "," + Location.getX() + "," + Location.getY() + "," + Location.getZ()
-				+ "," + Location.getPitch() + "," + Location.getYaw();
+		+ "," + Location.getPitch() + "," + Location.getYaw();
 	}
 
 	@SuppressWarnings("deprecation")
